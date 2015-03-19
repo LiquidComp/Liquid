@@ -1,10 +1,15 @@
 fileFormatVersion: 2
-guid: 07ad4d8e7c642cf49a7cb531c1afb64a
+guid: b4fd2c42157c65e40a538b3517918fb4
+timeCreated: 1426784319
+licenseType: Free
 TextureImporter:
+  fileIDToRecycleName:
+    21300000: tempPlayer_Front_Right
+    21300002: tempPlayer_Back_Left
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -19,49 +24,54 @@ TextureImporter:
   isReadable: 0
   grayScaleToAlpha: 0
   generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -1
-  maxTextureSize: 1024
+  maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: 1
+    aniso: 16
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
   lightmap: 0
+  rGBM: 0
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: .5, y: .5}
-  spritePixelsToUnits: 200
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
-  buildTargetSettings:
-  - buildTarget: iPhone
-    maxTextureSize: 1024
-    textureFormat: -2
-    compressionQuality: 50
+  buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: running-icon-on-transparent-background-hi_0
+    - name: tempPlayer_Front_Right
       rect:
         serializedVersion: 2
-        x: 353
+        x: 319
         y: 0
-        width: 247
+        width: 281
         height: 575
-      alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: running-icon-on-transparent-background-hi_1
+      alignment: 9
+      pivot: {x: .0888163894, y: .554257512}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tempPlayer_Back_Left
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 353
-        height: 488
+        y: 173
+        width: 322
+        height: 315
       alignment: 0
       pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
+  assetBundleName: 
+  assetBundleVariant: 
