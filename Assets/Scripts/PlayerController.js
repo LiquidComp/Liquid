@@ -6,12 +6,12 @@ var speed : float = 10;
 
 function Update () {
 	if (Input.GetKey(moveLeft)) {
-		rigidbody2D.velocity.x = speed *-1;
+		GetComponent.<Rigidbody2D>().velocity.x = speed *-1;
 	}
 	else if (Input.GetKey(moveRight)) {
-		rigidbody2D.velocity.x = speed;
+		GetComponent.<Rigidbody2D>().velocity.x = speed;
 	}
 	else {
-	rigidbody2D.velocity.x = 0;
+	GetComponent.<Rigidbody2D>().velocity.x = 0;
 	}
 }
