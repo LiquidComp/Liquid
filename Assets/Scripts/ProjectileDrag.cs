@@ -1,11 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+	
 public class ProjectileDrag : MonoBehaviour {
 
 	public float maxStretch = 3.0f;
-	public LineRenderer playerLine;
-
 	private SpringJoint2D spring;
 	private Transform tempPlayer;
 	private bool clickedOn;
