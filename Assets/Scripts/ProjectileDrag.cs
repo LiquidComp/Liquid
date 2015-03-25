@@ -4,10 +4,9 @@ using System.Collections;
 public class ProjectileDrag : MonoBehaviour {
 
 	public float maxStretch = 3.0f;
-
-	private bool clickedOn;
 	private SpringJoint2D spring;
 	private Transform tempPlayer;
+	private bool clickedOn;
 	private Ray rayToMouse;
 	private float maxStretchSqr;
 	private Vector2 prevVelocity;
@@ -63,6 +62,5 @@ public class ProjectileDrag : MonoBehaviour {
 		mouseWorldPoint.z = 0.0f;
 		transform.position = mouseWorldPoint;
 	}
-	
 
 }
