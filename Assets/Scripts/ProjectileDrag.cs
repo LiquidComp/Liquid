@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class ProjectileDrag : MonoBehaviour {
-	
+
 	public float maxStretch = 3.0f;
 	private SpringJoint2D spring;
 	private Transform tempPlayer;
@@ -10,7 +10,7 @@ public class ProjectileDrag : MonoBehaviour {
 	private Ray rayToMouse;
 	private float maxStretchSqr;
 	private Vector2 prevVelocity;
-	
+
 	void Awake () {
 		spring = GetComponent <SpringJoint2D> ();
 		tempPlayer = spring.connectedBody.transform;
@@ -35,8 +35,7 @@ public class ProjectileDrag : MonoBehaviour {
 				prevVelocity = GetComponent<Rigidbody2D>().velocity;
 			}
 			
-		} 
-		
+		}
 	}
 	
 	void OnMouseDown() {
@@ -58,9 +57,10 @@ public class ProjectileDrag : MonoBehaviour {
 			rayToMouse.direction = throwToMouse;
 			mouseWorldPoint = rayToMouse.GetPoint(maxStretch);
 		}
+
 		
 		mouseWorldPoint.z = 0.0f;
 		transform.position = mouseWorldPoint;
 	}
-	
+
 }
