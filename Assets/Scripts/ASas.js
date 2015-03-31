@@ -1,4 +1,5 @@
 
+
  var force = 4.0;
  var samples = 15;
  var spacing = 0.1;  // Time between samples 
@@ -48,4 +49,4 @@
          v2.y = y * t + 0.5 * Physics.gravity.y * t * t + transform.position.y;
          argo[i].transform.position = v2;
      }
- }
+}
