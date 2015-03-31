@@ -1,10 +1,13 @@
 
+ var force = 4.0;
+ var samples = 15;
+ var spacing = 0.1;  // Time between samples 
+ 
  private var offset : Vector2;
  private var home : Vector2;
  private var argo : GameObject[];
  
  private var velocity = Vector2.zero;
- private var freeze = true;
  
  function Start () {
      home = transform.position;
