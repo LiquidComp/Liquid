@@ -8,9 +8,9 @@
 	private var spring : SpringJoint2D;
 	private var tempPlayer : Transform;
 	private var clickedOn;
-	private var rayToMouse : Ray ;
+	private var rayToMouse : Ray;
 	private var maxStretchSqr : float;
-	private var prevVelocity : Vector2 ;
+	private var prevVelocity : Vector2;
 
  private var offset : Vector2;
  private var home : Vector2;
