@@ -43,10 +43,17 @@ function Awake () {
 		if (spring != null) {
 			if (!gameObject.GetComponent(Rigidbody2D).isKinematic && (prevVelocity.sqrMagnitude > gameObject.GetComponent(Rigidbody2D).velocity.sqrMagnitude)) {
 				Destroy (spring);
-				gameObject.GetComponent(Rigidbody2D).velocity = prevVelocity * 0.8;
+				//gameObject.GetComponent(Rigidbody2D).velocity = prevVelocity * 0.8;
+				var v2 = transform.position;
+				var y = (force  * (home - transform.position)).y;
+				v2.y = 0.0;
+				v2 +=  force * (home - transform.position);
+				v2.y = transform.position.y;
+    			gameObject.GetComponent(Rigidbody2D).velocity = v2;
 			}
 			if (!clickedOn) {
 				prevVelocity = gameObject.GetComponent(Rigidbody2D).velocity;
+				ShowHideIndicators(false);
 			}
 			
 		}
@@ -62,6 +69,7 @@ function Awake () {
 function OnMouseDown() {
 	spring.enabled = false;
 	clickedOn = true;
+	ShowHideIndicators(true);
 }
  
  function OnMouseUp() {
@@ -91,8 +99,8 @@ function OnMouseDown() {
 }
 //FFEENCOMMENT
 function Dragging () {
-		Vector3 mouseWorldPoint = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-		Vector2 throwToMouse = mouseWorldPoint - tempPlayer.position;
+		var mouseWorldPoint : Vector3 = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+		var throwToMouse : Vector2 = mouseWorldPoint - tempPlayer.position;
 		
 		if (throwToMouse.sqrMagnitude > maxStretchSqr) {
 			rayToMouse.direction = throwToMouse;
