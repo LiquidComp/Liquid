@@ -5,17 +5,16 @@ private var clickedOn;
 private var rayToMouse : Ray;
 private var maxStretchSqr : float;
 private var prevVelocity : Vector2;
-private var attachedSpring = true;
 
- var force = 4.0;
- var samples = 15;
- var spacing = 0.1;  // Time between samples 
+public var force = 4.0;
+public var samples = 15;
+public var spacing = 0.1;  // Time between samples 
  
- private var offset : Vector2;
- private var home : Vector2;
- private var argo : GameObject[];
+private var offset : Vector2;
+private var home : Vector2;
+private var argo : GameObject[];
  
- private var velocity = Vector2.zero;
+private var velocity = Vector2.zero;
  
 function Awake () {
 		spring = gameObject.GetComponent(SpringJoint2D);
@@ -44,7 +43,7 @@ function Awake () {
 		if (spring != null) {
 			if (!gameObject.GetComponent(Rigidbody2D).isKinematic && (prevVelocity.sqrMagnitude > gameObject.GetComponent(Rigidbody2D).velocity.sqrMagnitude)) {
 				Destroy (spring);
-				gameObject.GetComponent(Rigidbody2D).velocity = prevVelocity * 0.8f;
+				gameObject.GetComponent(Rigidbody2D).velocity = prevVelocity * 0.8;
 			}
 			if (!clickedOn) {
 				prevVelocity = gameObject.GetComponent(Rigidbody2D).velocity;
@@ -80,7 +79,7 @@ function OnMouseDown() {
  function DisplayIndicators() {
      argo[0].transform.position = transform.position;
      var v2 = transform.position;
-     var y = (force * (home - transform.position)).y;
+     var y = (force  * (home - transform.position)).y;
      var t = 0.0;
      v2.y = 0.0;
      for (var i = 1; i < argo.Length; i++) {
@@ -92,8 +91,8 @@ function OnMouseDown() {
 }
 
 function Dragging () {
-		mouseWorldPoint = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-		throwToMouse = mouseWorldPoint - tempPlayer.position;
+		Vector3 mouseWorldPoint = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+		Vector2 throwToMouse = mouseWorldPoint - tempPlayer.position;
 		
 		if (throwToMouse.sqrMagnitude > maxStretchSqr) {
 			rayToMouse.direction = throwToMouse;
@@ -101,6 +100,6 @@ function Dragging () {
 		}
 
 		
-		mouseWorldPoint.z = 0.0f;
+		mouseWorldPoint.z = 0.0;
 		transform.position = mouseWorldPoint;
 }
