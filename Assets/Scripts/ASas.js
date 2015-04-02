@@ -89,7 +89,7 @@ function OnMouseDown() {
          argo[i].transform.position = v2;
      }
 }
-
+//FFEENCOMMENT
 function Dragging () {
 		Vector3 mouseWorldPoint = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 		Vector2 throwToMouse = mouseWorldPoint - tempPlayer.position;
