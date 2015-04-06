@@ -85,7 +85,7 @@ function OnMouseDown() {
      for (var i = 1; i < argo.Length; i++) {
          v2 +=  force * (home - transform.position) * spacing;
          t += spacing;
-         v2.y = y * t + 0.5 * (Physics.gravity.y * 2) * t * t + transform.position.y;
+         v2.y = y * t + 0.5 * (Physics.gravity.y * gameObject.GetComponent(Rigidbody2D).gravityScale) * t * t + transform.position.y;
          argo[i].transform.position = v2;
      }
 }
