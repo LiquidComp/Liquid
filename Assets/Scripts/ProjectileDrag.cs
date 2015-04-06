@@ -29,7 +29,7 @@ public class ProjectileDrag : MonoBehaviour {
 		if (spring != null) {
 			if (!GetComponent<Rigidbody2D>().isKinematic && prevVelocity.sqrMagnitude > GetComponent<Rigidbody2D>().velocity.sqrMagnitude) {
 				Destroy (spring);
-				//GetComponent<Rigidbody2D>().velocity = prevVelocity * 0.8f;
+				GetComponent<Rigidbody2D>().velocity = prevVelocity * 0.8f;
 			}
 			if (!clickedOn) {
 				prevVelocity = GetComponent<Rigidbody2D>().velocity;

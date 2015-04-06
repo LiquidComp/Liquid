@@ -13,8 +13,7 @@ public var spacing = 0.1;  // Time between samples
 private var offset : Vector2;
 private var home : Vector2;
 private var argo : GameObject[];
- 
-private var velocity = Vector2.zero;
+
  
 function Awake () {
 		spring = gameObject.GetComponent(SpringJoint2D);
@@ -41,18 +40,14 @@ function Awake () {
 		}
 		
 		if (spring != null) {
-			if (!gameObject.GetComponent(Rigidbody2D).isKinematic && (prevVelocity.sqrMagnitude > gameObject.GetComponent(Rigidbody2D).velocity.sqrMagnitude)) {
+			if (!gameObject.GetComponent(Rigidbody2D).isKinematic /*&& (prevVelocity.sqrMagnitude > gameObject.GetComponent(Rigidbody2D).velocity.sqrMagnitude)*/) {
 				Destroy (spring);
-				//gameObject.GetComponent(Rigidbody2D).velocity = prevVelocity * 0.8;
-				var v2 = transform.position;
-				var y = (force  * (home - transform.position)).y;
-				v2.y = 0.0;
-				v2 +=  force * (home - transform.position);
-				v2.y = transform.position.y;
-    			gameObject.GetComponent(Rigidbody2D).velocity = v2;
+				//gameObject.GetComponent(Rigidbody2D).velocity = prevVelocity;
+				GetComponent.<Rigidbody2D>().AddForce(Vector2.right * 20000);
 			}
 			if (!clickedOn) {
-				prevVelocity = gameObject.GetComponent(Rigidbody2D).velocity;
+				//prevVelocity = gameObject.GetComponent(Rigidbody2D).velocity;
+				
 				ShowHideIndicators(false);
 			}
 			
@@ -78,11 +73,7 @@ function OnMouseDown() {
 	gameObject.GetComponent(Rigidbody2D).isKinematic = false;
 	clickedOn = false;
  }
-      
- function OnMouseDrag() {    
-    DisplayIndicators();
- }
-      
+  
  
  function DisplayIndicators() {
      argo[0].transform.position = transform.position;
@@ -97,7 +88,7 @@ function OnMouseDown() {
          argo[i].transform.position = v2;
      }
 }
-//FFEENCOMMENT
+
 function Dragging () {
 		var mouseWorldPoint : Vector3 = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 		var throwToMouse : Vector2 = mouseWorldPoint - tempPlayer.position;
@@ -107,7 +98,7 @@ function Dragging () {
 			mouseWorldPoint = rayToMouse.GetPoint(maxStretch);
 		}
 
-		
+		DisplayIndicators();
 		mouseWorldPoint.z = 0.0;
 		transform.position = mouseWorldPoint;
 }
