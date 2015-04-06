@@ -1,19 +1,19 @@
 public var maxStretch = 3.0;
+public var force = 15.0;
+public var samples = 15;
+public var spacing = 0.1;
+public var trajectoryDots : Material;
+
 private var spring : SpringJoint2D;
 private var tempPlayer : Transform;
 private var clickedOn;
 private var rayToMouse : Ray;
 private var maxStretchSqr : float;
 private var prevVelocity : Vector2;
-
-public var force = 4.0;
-public var samples = 15;
-public var spacing = 0.1;  // Time between samples 
- 
 private var offset : Vector2;
 private var home : Vector2;
 private var argo : GameObject[];
-
+private var balls : float;
  
 function Awake () {
 		spring = gameObject.GetComponent(SpringJoint2D);
@@ -25,11 +25,14 @@ function Awake () {
      home = transform.position;
      argo = new GameObject[samples];
      for (var i = 0; i < argo.Length; i++) {
+     	 balls = balls + 0.007;
          var go = GameObject.CreatePrimitive(PrimitiveType.Sphere);
          go.GetComponent.<Collider>().enabled = false;
-         go.transform.localScale = Vector3(0.2, 0.2, 0.2);
+         go.transform.localScale = Vector3((0.2 - balls), (0.2 - balls), 0.2);
+         go.GetComponent.<Renderer>().material = trajectoryDots;
          argo[i] = go;
      }
+     ShowHideIndicators(false);
      rayToMouse = new Ray (tempPlayer.position, Vector3.zero);
 	 maxStretchSqr = maxStretch * maxStretch;
  }
@@ -41,15 +44,10 @@ function Awake () {
 		}
 		
 		if (spring != null) {
-			if (!gameObject.GetComponent(Rigidbody2D).isKinematic /*&& (prevVelocity.sqrMagnitude > gameObject.GetComponent(Rigidbody2D).velocity.sqrMagnitude)*/) {
+			if (!gameObject.GetComponent(Rigidbody2D).isKinematic) {
 				Destroy (spring);
-				//gameObject.GetComponent(Rigidbody2D).velocity = prevVelocity;
+
 				GetComponent(Rigidbody2D).AddForce((shootVector * force), ForceMode2D.Impulse);
-			}
-			if (!clickedOn) {
-				//prevVelocity = gameObject.GetComponent(Rigidbody2D).velocity;
-				
-				//ShowHideIndicators(false);
 			}
 			
 		}
@@ -69,7 +67,7 @@ function OnMouseDown() {
 }
  
  function OnMouseUp() {
- 	//ShowHideIndicators(false);
+ 	ShowHideIndicators(false);
  	spring.enabled = true;
 	gameObject.GetComponent(Rigidbody2D).isKinematic = false;
 	clickedOn = false;
