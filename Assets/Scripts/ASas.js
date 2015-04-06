@@ -35,6 +35,7 @@ function Awake () {
  }
  
  function Update () {
+ 		var shootVector = home - transform.position;
  		if (clickedOn) {
 			Dragging ();
 		}
@@ -43,12 +44,12 @@ function Awake () {
 			if (!gameObject.GetComponent(Rigidbody2D).isKinematic /*&& (prevVelocity.sqrMagnitude > gameObject.GetComponent(Rigidbody2D).velocity.sqrMagnitude)*/) {
 				Destroy (spring);
 				//gameObject.GetComponent(Rigidbody2D).velocity = prevVelocity;
-				GetComponent.<Rigidbody2D>().AddForce(Vector2.right * 20000);
+				GetComponent(Rigidbody2D).AddForce((shootVector * force), ForceMode2D.Impulse);
 			}
 			if (!clickedOn) {
 				//prevVelocity = gameObject.GetComponent(Rigidbody2D).velocity;
 				
-				ShowHideIndicators(false);
+				//ShowHideIndicators(false);
 			}
 			
 		}
@@ -68,7 +69,7 @@ function OnMouseDown() {
 }
  
  function OnMouseUp() {
- 	ShowHideIndicators(false);
+ 	//ShowHideIndicators(false);
  	spring.enabled = true;
 	gameObject.GetComponent(Rigidbody2D).isKinematic = false;
 	clickedOn = false;
@@ -84,7 +85,7 @@ function OnMouseDown() {
      for (var i = 1; i < argo.Length; i++) {
          v2 +=  force * (home - transform.position) * spacing;
          t += spacing;
-         v2.y = y * t + 0.5 * Physics.gravity.y * t * t + transform.position.y;
+         v2.y = y * t + 0.5 * (Physics.gravity.y * 2) * t * t + transform.position.y;
          argo[i].transform.position = v2;
      }
 }
