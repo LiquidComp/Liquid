@@ -3,6 +3,7 @@ public var force = 15.0;
 public var samples = 15;
 public var spacing = 0.1;
 public var trajectorySprite : Sprite;
+public var trajectoryParent : Transform;
 
 private var spring : SpringJoint2D;
 private var tempPlayer : Transform;
@@ -20,7 +21,6 @@ private var normalScale;
 function Awake () {
 		spring = gameObject.GetComponent(SpringJoint2D);
 		tempPlayer = spring.connectedBody.transform;
-
 	}
 	
  
@@ -35,6 +35,8 @@ function Awake () {
          go.AddComponent.<SpriteRenderer>().sprite = trajectorySprite;
          go.GetComponent.<Renderer>().sortingLayerName = "Foreground";
 		 go.GetComponent.<Renderer>().sortingOrder = 3;
+		 go.name = "Trajectory Dot";
+		 go.transform.parent = trajectoryParent;
          argo[i] = go;
      }
      ShowHideIndicators(false);
