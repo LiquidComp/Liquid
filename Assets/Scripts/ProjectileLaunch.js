@@ -1,8 +1,8 @@
-public var maxStretch = 3.0;
+public var maxStretch = 2.0;
 public var force = 15.0;
 public var samples = 15;
 public var spacing = 0.1;
-public var trajectoryDots : Material;
+public var trajectorySprite : Sprite;
 
 private var spring : SpringJoint2D;
 private var tempPlayer : Transform;
@@ -14,6 +14,8 @@ private var offset : Vector2;
 private var home : Vector2;
 private var argo : GameObject[];
 private var balls : float;
+private var normalScale;
+
 
 function Awake () {
 		spring = gameObject.GetComponent(SpringJoint2D);
@@ -23,19 +25,16 @@ function Awake () {
 	
  
  function Start () {
+ 	 normalScale = transform.localScale.y;
      home = transform.position;
      argo = new GameObject[samples];
      for (var i = 0; i < argo.Length; i++) {
      	 balls = balls + 0.007;
-         //var go = GameObject.CreatePrimitive(PrimitiveType.Sphere);
          var go = GameObject();
-         //go.GetComponent.<Collider>().enabled = false;
          go.transform.localScale = Vector3((0.2 - balls), (0.2 - balls), 0.2);
-         go.AddComponent.<SpriteRenderer>();
-         go.(SpriteRenderer).sprite = newSprite;
-         //go.GetComponent.<Renderer>().material = trajectoryDots;
-         //go.GetComponent.<Renderer>().sortingLayerName = "Foreground";
-		 //go.GetComponent.<Renderer>().sortingOrder = 3;
+         go.AddComponent.<SpriteRenderer>().sprite = trajectorySprite;
+         go.GetComponent.<Renderer>().sortingLayerName = "Foreground";
+		 go.GetComponent.<Renderer>().sortingOrder = 3;
          argo[i] = go;
      }
      ShowHideIndicators(false);
@@ -44,6 +43,7 @@ function Awake () {
  }
  
  function Update () {
+ transform.localScale.y = normalScale - (GetComponent.<Rigidbody2D>().velocity.x / (force * maxStretch * 2.5));
  		var shootVector = home - transform.position;
  		if (clickedOn) {
 			Dragging ();
@@ -61,8 +61,8 @@ function Awake () {
  
  function ShowHideIndicators(show : boolean) {
      for (var i = 0; i < argo.Length; i++) {
-         //argo[i].GetComponent.<Renderer>().enabled = show;
-         //argo[i].transform.position = home;
+         argo[i].GetComponent.<Renderer>().enabled = show;
+         argo[i].transform.position = home;
      }
  }
  
