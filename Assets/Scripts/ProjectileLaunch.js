@@ -14,10 +14,11 @@ private var offset : Vector2;
 private var home : Vector2;
 private var argo : GameObject[];
 private var balls : float;
- 
+
 function Awake () {
 		spring = gameObject.GetComponent(SpringJoint2D);
 		tempPlayer = spring.connectedBody.transform;
+
 	}
 	
  
@@ -26,10 +27,15 @@ function Awake () {
      argo = new GameObject[samples];
      for (var i = 0; i < argo.Length; i++) {
      	 balls = balls + 0.007;
-         var go = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-         go.GetComponent.<Collider>().enabled = false;
+         //var go = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+         var go = GameObject();
+         //go.GetComponent.<Collider>().enabled = false;
          go.transform.localScale = Vector3((0.2 - balls), (0.2 - balls), 0.2);
-         go.GetComponent.<Renderer>().material = trajectoryDots;
+         go.AddComponent.<SpriteRenderer>();
+         go.(SpriteRenderer).sprite = newSprite;
+         //go.GetComponent.<Renderer>().material = trajectoryDots;
+         //go.GetComponent.<Renderer>().sortingLayerName = "Foreground";
+		 //go.GetComponent.<Renderer>().sortingOrder = 3;
          argo[i] = go;
      }
      ShowHideIndicators(false);
@@ -55,8 +61,8 @@ function Awake () {
  
  function ShowHideIndicators(show : boolean) {
      for (var i = 0; i < argo.Length; i++) {
-         argo[i].GetComponent.<Renderer>().enabled = show;
-         argo[i].transform.position = home;
+         //argo[i].GetComponent.<Renderer>().enabled = show;
+         //argo[i].transform.position = home;
      }
  }
  
