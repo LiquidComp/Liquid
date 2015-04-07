@@ -15,7 +15,7 @@ private var offset : Vector2;
 private var home : Vector2;
 private var argo : GameObject[];
 private var balls : float;
-private var normalScale;
+private var normalScale : float;
 
 
 function Awake () {
