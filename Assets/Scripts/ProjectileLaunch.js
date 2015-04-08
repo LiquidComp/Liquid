@@ -29,13 +29,13 @@ function Awake () {
      home = transform.position;
      argo = new GameObject[samples];
      for (var i = 0; i < argo.Length; i++) {
-     	 balls = balls + 0.007;
+     	 balls = balls + 0.005;
          var go = GameObject();
          go.transform.localScale = Vector3((0.2 - balls), (0.2 - balls), 0.2);
          go.AddComponent.<SpriteRenderer>().sprite = trajectorySprite;
          go.GetComponent.<Renderer>().sortingLayerName = "Foreground";
 		 go.GetComponent.<Renderer>().sortingOrder = 3;
-		 go.name = "Trajectory Dot";
+		 go.name = "Trajectory Dot " + i;
 		 go.transform.parent = trajectoryParent;
          argo[i] = go;
      }
@@ -45,7 +45,7 @@ function Awake () {
  }
  
  function Update () {
- 		transform.localScale.y = normalScale - (GetComponent.<Rigidbody2D>().velocity.x / (force * maxStretch * 2.5));
+ 		transform.localScale.y = normalScale - ((GetComponent.<Rigidbody2D>().velocity.x) / (force * maxStretch * 2.5));
  		var shootVector = home - transform.position;
  		if (clickedOn) {
 			Dragging ();
