@@ -3,6 +3,7 @@ public var force = 15.0;
 public var samples = 15;
 public var spacing = 0.1;
 public var trajectorySprite : Sprite;
+public var trajectoryParent : Transform;
 
 private var spring : SpringJoint2D;
 private var tempPlayer : Transform;
@@ -14,13 +15,12 @@ private var offset : Vector2;
 private var home : Vector2;
 private var argo : GameObject[];
 private var balls : float;
-private var normalScale;
-
+private var normalScale : float;
+//dkdgdfgjh
 
 function Awake () {
 		spring = gameObject.GetComponent(SpringJoint2D);
 		tempPlayer = spring.connectedBody.transform;
-
 	}
 	
  
@@ -29,12 +29,14 @@ function Awake () {
      home = transform.position;
      argo = new GameObject[samples];
      for (var i = 0; i < argo.Length; i++) {
-     	 balls = balls + 0.007;
+     	 balls = balls + 0.005;
          var go = GameObject();
          go.transform.localScale = Vector3((0.2 - balls), (0.2 - balls), 0.2);
          go.AddComponent.<SpriteRenderer>().sprite = trajectorySprite;
          go.GetComponent.<Renderer>().sortingLayerName = "Foreground";
 		 go.GetComponent.<Renderer>().sortingOrder = 3;
+		 go.name = "Trajectory Dot " + i;
+		 go.transform.parent = trajectoryParent;
          argo[i] = go;
      }
      ShowHideIndicators(false);
@@ -43,7 +45,9 @@ function Awake () {
  }
  
  function Update () {
- transform.localScale.y = normalScale - (GetComponent.<Rigidbody2D>().velocity.x / (force * maxStretch * 2.5));
+ 		//transform.localScale.y = normalScale - (GetComponent.<Rigidbody2D>().velocity.x / (force * maxStretch * 2.5));
+ 		transform.rotation.z = 0;
+ 		transform.localScale.y = normalScale - ((GetComponent.<Rigidbody2D>().velocity.x) / (force * maxStretch * 2.5));
  		var shootVector = home - transform.position;
  		if (clickedOn) {
 			Dragging ();
@@ -52,12 +56,18 @@ function Awake () {
 		if (spring != null) {
 			if (!gameObject.GetComponent(Rigidbody2D).isKinematic) {
 				Destroy (spring);
-
 				GetComponent(Rigidbody2D).AddForce((shootVector * force), ForceMode2D.Impulse);
 			}
 			
 		}
 }	
+
+ function OnCollisionEnter2D(coll: Collision2D) {
+	if (coll.gameObject.tag == "Obstacles")
+		transform.localScale.y = normalScale - ((0.5 - (0.5 *(Time.smoothDeltaTime / 20))));
+		yield WaitForSeconds(0.3);
+		//transform.localScale.y = normalScale;
+}
  
  function ShowHideIndicators(show : boolean) {
      for (var i = 0; i < argo.Length; i++) {

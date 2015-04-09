@@ -1,11 +1,9 @@
 fileFormatVersion: 2
-guid: b4fd2c42157c65e40a538b3517918fb4
-timeCreated: 1426869028
+guid: 9b2c4542e019cb248986a364c1727a21
+timeCreated: 1428412888
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: tempPlayer_0
-    21300002: tempPlayer_1
+  fileIDToRecycleName: {}
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -39,28 +37,18 @@ TextureImporter:
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: .5, y: .5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 200
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites:
-    - name: tempPlayer_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 600
-        height: 575
-      alignment: 9
-      pivot: {x: .965587139, y: .793918431}
-      border: {x: 0, y: 0, z: 0, w: 0}
+    sprites: []
   spritePackingTag: 
   userData: 
   assetBundleName: 
