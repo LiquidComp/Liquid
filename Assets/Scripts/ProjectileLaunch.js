@@ -45,12 +45,9 @@ function Awake () {
  }
  
  function Update () {
-<<<<<<< HEAD
  		//transform.localScale.y = normalScale - (GetComponent.<Rigidbody2D>().velocity.x / (force * maxStretch * 2.5));
-=======
  		transform.rotation.z = 0;
  		transform.localScale.y = normalScale - ((GetComponent.<Rigidbody2D>().velocity.x) / (force * maxStretch * 2.5));
->>>>>>> 2c0c336b1b455dd99fcba894642dd74563d71cdd
  		var shootVector = home - transform.position;
  		if (clickedOn) {
 			Dragging ();
