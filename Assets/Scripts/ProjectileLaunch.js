@@ -45,6 +45,7 @@ function Awake () {
  }
  
  function Update () {
+ 		transform.rotation.z = 0;
  		transform.localScale.y = normalScale - ((GetComponent.<Rigidbody2D>().velocity.x) / (force * maxStretch * 2.5));
  		var shootVector = home - transform.position;
  		if (clickedOn) {
@@ -54,7 +55,6 @@ function Awake () {
 		if (spring != null) {
 			if (!gameObject.GetComponent(Rigidbody2D).isKinematic) {
 				Destroy (spring);
-
 				GetComponent(Rigidbody2D).AddForce((shootVector * force), ForceMode2D.Impulse);
 			}
 			
