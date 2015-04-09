@@ -45,8 +45,12 @@ function Awake () {
  }
  
  function Update () {
+<<<<<<< HEAD
+ 		//transform.localScale.y = normalScale - (GetComponent.<Rigidbody2D>().velocity.x / (force * maxStretch * 2.5));
+=======
  		transform.rotation.z = 0;
  		transform.localScale.y = normalScale - ((GetComponent.<Rigidbody2D>().velocity.x) / (force * maxStretch * 2.5));
+>>>>>>> 2c0c336b1b455dd99fcba894642dd74563d71cdd
  		var shootVector = home - transform.position;
  		if (clickedOn) {
 			Dragging ();
@@ -60,6 +64,13 @@ function Awake () {
 			
 		}
 }	
+
+ function OnCollisionEnter2D(coll: Collision2D) {
+	if (coll.gameObject.tag == "Obstacles")
+		transform.localScale.y = normalScale - ((0.5 - (0.5 *(Time.smoothDeltaTime / 20))));
+		yield WaitForSeconds(0.3);
+		//transform.localScale.y = normalScale;
+}
  
  function ShowHideIndicators(show : boolean) {
      for (var i = 0; i < argo.Length; i++) {
