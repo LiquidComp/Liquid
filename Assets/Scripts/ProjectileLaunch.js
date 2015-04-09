@@ -16,7 +16,7 @@ private var home : Vector2;
 private var argo : GameObject[];
 private var balls : float;
 private var normalScale : float;
-//dkdgdfgjh
+
 
 function Awake () {
 		spring = gameObject.GetComponent(SpringJoint2D);
